@@ -8,7 +8,7 @@ const RefreshTokenSchema=new mongoose.Schema({
     },
     expiresAt:{
         type:Date,
-        requred:true
+        requred:true,
     },
     userId:{
         type:mongoose.Schema.Types.ObjectId,

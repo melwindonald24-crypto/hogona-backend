@@ -5,6 +5,7 @@ import express from "express"
 import authRoutes from "./Authentication/router/authenticationRoutes.js";
 import  mongoose from "mongoose";
 import cookieParser from "cookie-parser"
+import profileRoutes from "./Users/routes/profileRoutes.js";
 setServers(["8.8.8.8", "1.1.1.1"]);
 
 
@@ -15,7 +16,8 @@ app.use(cookieParser())
 
 async function main()
 {
-    app.use(authRoutes,)
+    app.use(authRoutes)
+    app.use(profileRoutes)
     
 
     try{
