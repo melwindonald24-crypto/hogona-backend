@@ -2,14 +2,14 @@ import acessTokenSevice from "../services/accesssTokenService.js";
 
 export const auth = (req, res, next) => {
   try {
-    const authHeader = req.Headers.authorization;
+    const authHeader = req.headers.authorization;
     if (!authHeader || !authHeader.startsWith("Bearer ")) {
-      res.status(401).json({ error: "you are unauthorized!" });
+      return res.status(401).json({ error: "you are unauthorized!!" });
     }
     const accessToken = authHeader.split(" ")[1];
     try {
       const payload = acessTokenSevice.verifyToken(accessToken);
-      res.userId = payload.userId;
+      req.userId = payload.userId;
       next();
     } catch (error) {
       res.status(401).json({ error: "you are unauthorized!" });
