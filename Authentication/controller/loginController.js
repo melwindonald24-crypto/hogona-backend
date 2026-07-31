@@ -19,7 +19,7 @@ export const login = async (req, res) => {
     const record = await User.findOne()
       .where("email")
       .equals(email.toLowerCase());
-    if (!record) return res.status(401).json({ error: "invalid password or email" });
+    if (!record) return res.status(401).json({ error: "please register" });
 
     const isValid = await bcrypt.compare(password, record.password);
     if (!isValid) return res.status(401).json({ error: "invalid password or email" });

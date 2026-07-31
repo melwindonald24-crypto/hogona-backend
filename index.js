@@ -6,6 +6,8 @@ import authRoutes from "./Authentication/router/authenticationRoutes.js";
 import  mongoose from "mongoose";
 import cookieParser from "cookie-parser"
 import profileRoutes from "./Users/routes/profileRoutes.js";
+import  tripRoutes  from "./trip/routes/tripRoutes.js";
+
 setServers(["8.8.8.8", "1.1.1.1"]);
 
 
@@ -18,7 +20,7 @@ async function main()
 {
     app.use(authRoutes)
     app.use(profileRoutes)
-    
+    app.use(tripRoutes)
 
     try{
         await mongoose.connect(process.env.MONGO_CONNECTION_STRING)
