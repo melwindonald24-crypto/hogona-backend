@@ -1,7 +1,8 @@
-import { extractHotelsService, searchHotelsService } from "../services/serpHotelServices.js";
+import { extractHotelsService, searchHotelsService } from "../services/searchHotelServices.js";
 import trip from "../models/trip.js";
 
-export const hotel=async (req,res)=>{
+
+export const getHotels=async (req,res)=>{
 
     try {
 
@@ -16,7 +17,7 @@ export const hotel=async (req,res)=>{
     } catch (error) {
 
         res.status(500).json({ error: "something went wrong try again" });
-        console.error(error)
+        console.log(error.message)
         
     }
     

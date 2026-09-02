@@ -4,9 +4,10 @@ import axios from "axios";
 export async function searchHotelsService({preferences})
 {
     const isBudget=(preferences.travelType==="budget");
+    const query=(isBudget)?`budget hotels in ${preferences.district}`:`luxury hotels in ${preferences.district}`;
     const params={
         engine:"google_hotels",
-        q:preferences.district,
+        q:query,
         check_in_date:preferences.dateRange.startDate,
         check_out_date:preferences.dateRange.endDate,
         adults:preferences.groupSize,
@@ -19,7 +20,7 @@ export async function searchHotelsService({preferences})
         api_key:process.env.SERP_API_KEY
 
     }
-    console.log(params);
+    // console.log(params);
     const response = await axios.get("https://serpapi.com/search",{params});
     const results = response.data.properties || [];
     return results;
@@ -78,7 +79,7 @@ export function extractHotelsService(results)
         element.type || "hotel",
 
       property_id:
-        element.propert_token,
+        element.property_token,
       
       booking_links:[], 
 

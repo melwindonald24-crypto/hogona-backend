@@ -12,6 +12,7 @@ const tripSchema = new mongoose.Schema({
     ref: "User",
     required: true,
   },
+
   preferences: {
     district: {
       type: String,
@@ -37,16 +38,21 @@ const tripSchema = new mongoose.Schema({
       required: true,
     },
   },
-  selectedHotels: {
+
+  selectedHotels: [{
+    
     placeId: {
       type: String,
      
     },
-
     name: {
       type: String,
 
     },
+    description: {
+      type: String,
+    },
+
     geom: {
       lat: {
         type: Number,
@@ -57,15 +63,45 @@ const tripSchema = new mongoose.Schema({
         
       },
     },
-    bookingLink: {
-      type: String,
-      
+    thumbnail:{
+      type:String,
     },
+    rating:{
+      type:Number,
+    },
+    total_price:{
+      amount: {
+        type: Number,
+      },
+      beforeTaxesFees: {
+        type: Number,
+      },
+      currency: {
+        type: String,
+      },
+    },
+    website:{
+      type:String,
+    },
+    phone:{
+      type:String,
+    },
+    bookingLinks: [{
+      provider:{
+        type: String,
+      },
+      url:{
+        type: String,
+      }
+    
+    }],
     isConfirmed: {
       type: Boolean,
       default: false,
     },
-  },
+  }],
+
+
 });
 
 export default mongoose.model("trip",tripSchema)
